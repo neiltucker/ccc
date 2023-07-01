@@ -1,0 +1,65 @@
+###  MongoDB Installation
+### PS1="\u@\h:\w\$ "
+
+### Windows Install:
+Install MongoDB on Windows: https://www.geeksforgeeks.org/how-to-install-mongodb-on-windows/
+Install MongoDB Compass:    https://www.geeksforgeeks.org/install-mongodb-compass-on-windows/?ref=rp
+
+
+### Install Ubuntu Updates
+sudo apt update -y && apt upgrade -y
+sudo apt-get install gnupg -y
+
+# Import Public GPG key
+curl -fsSL https://pgp.mongodb.com/server-6.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-6.0.gpg --dearmor
+
+# Create mongodb-org-4.4.list file and update the package database
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-6.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+sudo apt update -y
+
+# Install MongoDB and MongoSH
+sudo apt-get install mongodb-org -y
+sudo apt install mongosh -y
+
+# Start MongoDB 
+systemctl start mongod
+systemctl status mongod
+# Verify that the status of mongod is "active (running)".  If necessary, use Ctrl+C to end the command.
+
+# Verify MongoDB and MongoSH are working
+mongo --eval 'db.runCommand({ connectionStatus: 1 })'
+mongosh
+
+# Install Compass.  Perform this step as a regular user.  Not root.  If errors persists, run the commands in a new terminal window.
+# sudo apt install mongodb-compass -y
+# mongodb-compass
+wget https://downloads.mongodb.com/compass/mongodb-compass_1.33.1_amd64.deb
+sudo dpkg -i mongodb-compass_1.33.1_amd64.deb
+mongodb-compass
+
+# Optional Steps: 
+1. Create a database and collection using mongodb-compass
+2. Create a MongoDB Database and collection with the CLI: https://www.mongodb.com/basics/create-database
+
+===   
+ 
+### Option 2: Use installation instructions on docs.mongodb.com website for Ubuntu:
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
